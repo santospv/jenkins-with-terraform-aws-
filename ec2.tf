@@ -22,7 +22,7 @@ resource "aws_instance" "jenkins_server" {
       Name = "jenkins_server"
    }
 }
-resource "null_resource" "name" {
+resource "null_resource" "jenkins" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
