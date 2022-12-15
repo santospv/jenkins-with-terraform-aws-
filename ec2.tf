@@ -18,8 +18,6 @@ resource "aws_instance" "jenkins_server" {
    vpc_security_group_ids = [aws_security_group.security_group.id]
    key_name               = "santospv"
    associate_public_ip_address = true 
-   # user_data = "${file("${path.module}/install_jenkins.sh")}"
-   # user_data            = file("install_jenkins.sh")
    tags = {
       Name = "jenkins_server"
    }
