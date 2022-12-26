@@ -7,3 +7,6 @@ output "private_subnet_id" {
 output "security_group" {
   value = aws_security_group.security_group.id
 }
+output "website_url" {
+  value     = join ("", ["http://", aws_instance.jenkins_server.public_dns, ":", "8080"])
+}

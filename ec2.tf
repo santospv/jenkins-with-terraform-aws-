@@ -22,26 +22,3 @@ resource "aws_instance" "jenkins_server" {
       Name = "jenkins_server"
    }
 }
-resource "null_resource" "jenkins" {
-  connection {
-    type        = "ssh"
-    user        = "ubuntu"
-    private_key = file("./santospv.pem")
-    host        = aws_instance.jenkins_server.public_ip
-  }
-  provisioner "file" {
-    source      = "./install_jenkins.sh"
-    destination = "/tmp/install_jenkins.sh"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-        "sudo chmod +x /tmp/install_jenkins.sh",
-        "sh /tmp/install_jenkins.sh",
-    ]
-  }
-  depends_on = [aws_instance.jenkins_server]
-}
-output "website_url" {
-  value     = join ("", ["http://", aws_instance.jenkins_server.public_dns, ":", "8080"])
-}
