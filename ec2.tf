@@ -18,6 +18,14 @@ resource "aws_instance" "jenkins_server" {
    vpc_security_group_ids = [aws_security_group.security_group.id]
    key_name               = "santospv"
    associate_public_ip_address = true 
+   ebs_block_device {
+    device_name = "/dev/sda1"
+    volume_size = 15
+    volume_type = "gp2"
+    tags = {
+      Name = "volume-jenkins_server"
+    }
+  }
    tags = {
       Name = "jenkins_server"
    }
