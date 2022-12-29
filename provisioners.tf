@@ -87,7 +87,7 @@ resource "null_resource" "service_account" {
 
   provisioner "file" {
     source      = "./serviceaccount.json"
-    destination = "/tmp/instserviceaccount.json"
+    destination = "/tmp/serviceaccount.json"
   }
   depends_on = [null_resource.helm]
 }
